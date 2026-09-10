@@ -1,0 +1,30 @@
+{
+    "name": "ClickUp for FreeScout",
+    "alias": "clickupintegration",
+    "img": "/modules/clickupintegration/img/clickup-logo.png",
+    "description": "Create ClickUp tasks from conversations and link existing tasks to them.",
+    "version": "2.0.0",
+    "detailsUrl": "https://github.com/localmarketingpros/freescout-clickup",
+    "author": "Local Marketing Pros",
+    "authorUrl": "https://localmarketingpros.com",
+    "requiredAppVersion": "1.8.239",
+    "license": "AGPL-3.0",
+    "keywords": [
+        "clickup",
+        "tasks",
+        "integration"
+    ],
+    "active": 0,
+    "order": 0,
+    "providers": [
+        "Modules\\ClickupIntegration\\Providers\\ClickupIntegrationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": [],
+    "latestVersionUrl": "https://raw.githubusercontent.com/localmarketingpros/freescout-clickup/main/module.json",
+    "latestVersionZipUrl": "https://github.com/localmarketingpros/freescout-clickup/releases/latest/download/ClickupIntegration.zip",
+    "changelogUrl": "https://github.com/localmarketingpros/freescout-clickup/releases"
+}

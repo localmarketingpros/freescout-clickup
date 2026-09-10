@@ -1,0 +1,25 @@
+{
+    "name": "localmarketingpros/freescout-clickup",
+    "description": "",
+    "authors": [
+        {
+            "name": "Local Marketing Pros"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\ClickupIntegration\\Providers\\ClickupIntegrationServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ClickupIntegration\\": ""
+        }
+    },
+    "require": {}
+}

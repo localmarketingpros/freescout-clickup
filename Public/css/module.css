@@ -1,0 +1,94 @@
+@-webkit-keyframes rotate360 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.rotating {
+    animation: rotate360 2s linear infinite;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Sidebar */
+
+#clickup-sidebar .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0,0,0,0.2);
+    color: black;
+    width: 260px;
+    left: 0px;
+    height: 100%;
+    z-index: 1;
+}
+
+#clickup-sidebar .loader > div {
+    margin: 10px; font-size: 25px;
+}
+
+#clickup-task-list-container {
+    position: relative;
+}
+
+.clickup-task-list-items-container {
+    display: flex;
+    justify-content: center;
+}
+
+.clickup-task-list-item > div {
+    display: flex;
+    align-items: flex-start;
+}
+
+.clickup-task-list-item-name {
+    width: 95%;
+    overflow-wrap: anywhere;
+}
+
+.clickup-task-list-item-unlink {
+    padding: 0 5px
+}
+
+/* Modal */
+.clickup-modal-content {
+    padding: 15px;
+}
+
+/* Select 2 */
+span.select2-container {
+    width: 100% !important;
+}
+
+.select2-selection--multiple{
+    overflow: hidden !important;
+    height: auto !important;
+}
+
+.select2-selection__choice {
+    padding: 5px 10px 5px 30px !important;
+}
+
+.select2-selection__choice__remove {
+    font-size: 1.5em !important;
+    margin-top: 5px;
+}
+
+/* START - Placeholder specific */
+.select2-search--inline {
+    display: contents;
+}
+
+.select2-search__field:placeholder-shown {
+    width: 100% !important;
+}
+/* END */
+
+.assignee-img {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+}
