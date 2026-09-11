@@ -137,6 +137,7 @@ class ClickupIntegrationServiceProvider extends ServiceProvider
                     self::MODULE_FIELDS[self::FIELD_FREESCOUT_URL],
                     self::MODULE_FIELDS[self::FIELD_SUBMITTER_NAME],
                     self::MODULE_FIELDS[self::FIELD_SUBMITTER_EMAIL],
+                    self::MODULE_FIELDS[self::FIELD_DEFAULT_CUSTOM_FIELDS],
                 ];
 
                 $defaults = [

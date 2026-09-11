@@ -258,11 +258,11 @@ class ClickupService
                 'tags' => $task->tags,
             ]);
 
-            // Adds custom fields to the Task
-            $this->_linkTask($conversationId, $result['id'], [
+            // Adds custom fields to the Task, defaults first so the submitter fields always win
+            $this->_linkTask($conversationId, $result['id'], array_merge(Provider::getDefaultCustomFields(), [
                 Provider::getSubmitterNameFID() => $task->submitterName,
                 Provider::getSubmitterEmailFID() => $task->submitterEmail,
-            ]);
+            ]));
 
             // Triggers a new action event to notify task creation
             Eventy::action('clickupintegration.on_create_task', $conversationId, $result['id']);

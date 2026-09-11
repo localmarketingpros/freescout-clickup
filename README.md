@@ -30,6 +30,7 @@ Create these 4 custom fields on the target ClickUp list, then paste each field's
 - **FreeScout URL** (url): link back to the conversation.
 - **Submitter Name** (text): name of the person who submitted the conversation.
 - **Submitter Email** (email): email of the person who submitted the conversation.
+- **Default Custom Fields** (optional): one `field_id=value` per line, set on every task this module creates, in addition to the four fields above. For a dropdown field, the value is the option id.
 
 ## Limitations
 

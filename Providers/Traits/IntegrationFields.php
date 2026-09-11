@@ -20,6 +20,7 @@ trait IntegrationFields
     public const FIELD_FREESCOUT_URL = 'freescout_url';
     public const FIELD_SUBMITTER_NAME = 'submitter_name';
     public const FIELD_SUBMITTER_EMAIL = 'submitter_email';
+    public const FIELD_DEFAULT_CUSTOM_FIELDS = 'default_custom_fields';
 
     /**
      * Define a list of module fields, the base name prefixed by the module name.
@@ -38,6 +39,7 @@ trait IntegrationFields
         self::FIELD_FREESCOUT_URL   => Provider::MODULE_NAME . '.' . self::FIELD_FREESCOUT_URL,
         self::FIELD_SUBMITTER_NAME  => Provider::MODULE_NAME . '.' . self::FIELD_SUBMITTER_NAME,
         self::FIELD_SUBMITTER_EMAIL => Provider::MODULE_NAME . '.' . self::FIELD_SUBMITTER_EMAIL,
+        self::FIELD_DEFAULT_CUSTOM_FIELDS => Provider::MODULE_NAME . '.' . self::FIELD_DEFAULT_CUSTOM_FIELDS,
     ];
 
     /**
@@ -138,5 +140,61 @@ trait IntegrationFields
     public static function getSubmitterEmailFID()
     {
         return Option::get(self::MODULE_FIELDS[self::FIELD_SUBMITTER_EMAIL]);
+    }
+
+    /**
+     * Returns the default custom fields to set on every task this module creates,
+     * parsed from the "Default Custom Fields" textarea setting.
+     *
+     * @return array<string,string>
+     */
+    public static function getDefaultCustomFields()
+    {
+        return self::parseDefaultCustomFields(Option::get(self::MODULE_FIELDS[self::FIELD_DEFAULT_CUSTOM_FIELDS]));
+    }
+
+    /**
+     * Parses the "field_id=value" per line setting into an array.
+     * Blank lines and lines starting with # are ignored, a line is split on
+     * the first "=" only, a line with an empty id or value is skipped, and
+     * the four FreeScout custom field ids always win over a default.
+     *
+     * @param string|null $raw
+     * @return array<string,string>
+     */
+    private static function parseDefaultCustomFields($raw)
+    {
+        $reserved = [
+            self::getFreescoutIdFID(),
+            self::getFreescoutURLFID(),
+            self::getSubmitterNameFID(),
+            self::getSubmitterEmailFID(),
+        ];
+
+        $fields = [];
+
+        foreach (explode("\n", (string) $raw) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || $line[0] === '#') {
+                continue;
+            }
+
+            $separator = strpos($line, '=');
+            if ($separator === false) {
+                continue;
+            }
+
+            $fieldId = trim(substr($line, 0, $separator));
+            $value = trim(substr($line, $separator + 1));
+
+            if ($fieldId === '' || $value === '' || in_array($fieldId, $reserved, true)) {
+                continue;
+            }
+
+            $fields[$fieldId] = $value;
+        }
+
+        return $fields;
     }
 }

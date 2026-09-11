@@ -179,6 +179,20 @@
         </div>
     </div>
 
+    <!-- Default Custom Fields -->
+    <div class="form-group{{ $errors->has('settings[clickupintegration.default_custom_fields]') ? ' has-error' : '' }}">
+        <label for="default_custom_fields" class="col-sm-2 control-label">{{ __('Default Custom Fields') }}</label>
+
+        <div class="col-sm-6">
+            <textarea id="default_custom_fields" class="form-control input-sized" name="settings[clickupintegration.default_custom_fields]" rows="4">{{ old('settings[clickupintegration.default_custom_fields]', $settings['clickupintegration.default_custom_fields']) }}</textarea>
+            <div class="form-help">
+                One field_id=value per line, set on every task this module creates, in addition to the four fields above. For a dropdown field, the value is the option id. Blank lines and lines starting with # are ignored.
+            </div>
+
+            @include('partials/field_error', ['field'=>'settings[clickupintegration.default_custom_fields]'])
+        </div>
+    </div>
+
     <h3 class="subheader">{{ __('Extensions') }}</h3>
 
     @forelse(\Eventy::filter('settings.clickupintegration.extensions.views', []) as $view => $data)
